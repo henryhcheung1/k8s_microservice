@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - image: grafana/grafana
+        name: grafana
+        ports:
+        - containerPort: 3000
+          name: http
+        volumeMounts:
+          - name: grafana-storage
+            mountPath: /var/lib/grafana
+      volumes:
+        - name: grafana-storage
+          persistentVolumeClaim:
+            claimName: grafana-storage
+      securityContext:
+        runAsNonRoot: true
+        # runAsUser: 65534
+        # fsGroup: 472
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: grafana-storage
+  namespace: monitoring
+spec:
+  storageClassName: nfs-storageclass
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

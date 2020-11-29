@@ -1,6 +1,6 @@
 kind: Namespace
 apiVersion: v1
 metadata:
-  name: storage
+  name: monitoring
   labels:
-    name: storage
+    name: monitoring
