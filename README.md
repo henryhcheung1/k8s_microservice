@@ -4,8 +4,7 @@
 
 ```Bash
 kind create cluster --config kind\config.yaml
-
-kubectl cluster-info --context kind-kind
+k cluster-info --context kind-kind
 ```
 
 
@@ -18,3 +17,11 @@ From K8s worker nodes (client), mount NFS
 ```Bash
 mount -t nfs 172.18.0.5:/ /mnt
 ```
+
+## Setup Promtail, Loki, Grafana stak for monitoring
+```Bash
+helm upgrade --install loki loki/loki -f helm\loki_values.yaml -n monitoring
+helm upgrade --install promtail loki/promtail -f helm\promtail_values.yaml -n monitoring
+helm upgrade --install grafana grafana/grafana -f helm\grafana_values.yaml -n monitoring
+```  
+- should move these resources outside of cluster for monitoring cluster failure

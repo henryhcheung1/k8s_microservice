@@ -26,11 +26,11 @@ spec:
             - name: PROVISIONER_NAME
               value: nfs-provisioner
             - name: NFS_SERVER
-              value: 172.18.0.5
+              value: 172.18.0.2
             - name: NFS_PATH
               value: /
       volumes:
        - name: nfs-provisioner-v # same as volumemouts name
          nfs:
-           server: 172.18.0.5
+           server: 172.18.0.2
            path: /
