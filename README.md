@@ -18,7 +18,7 @@ From K8s worker nodes (client), mount NFS
 mount -t nfs 172.18.0.5:/ /mnt
 ```
 
-## Setup Promtail, Loki, Grafana stak for monitoring
+## Setup Promtail, Loki, Grafana monitoring stack via helm
 ```Bash
 helm upgrade --install loki loki/loki -f helm\loki_values.yaml -n monitoring
 helm upgrade --install promtail loki/promtail -f helm\promtail_values.yaml -n monitoring
