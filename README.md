@@ -25,3 +25,13 @@ helm upgrade --install promtail loki/promtail -f helm\promtail_values.yaml -n mo
 helm upgrade --install grafana grafana/grafana -f helm\grafana_values.yaml -n monitoring
 ```  
 - should move these resources outside of cluster for monitoring cluster failure
+
+
+## Prometheus Setup
+```Bash
+k create configmap prometheus-config —-from-file prometheus.yml -n monitoring
+k create configmap prometheus-config --from-file prometheus.yml -o yaml --dry-run | k replace -f -
+```
+#### TODO: 
+- Add Thanos
+- Switch to Prometheus Operator
