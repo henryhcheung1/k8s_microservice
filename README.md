@@ -1,3 +1,19 @@
+# Summary
+
+This repository holds my K8s development setup. Each piece of infrastructure serves as a deeper dive into the more advanced concepts of each service. When deployed together in a cluster (multi?), the interactions between the services can be observed and experimented upon. I will be dropping my notes in this README for now. Concepts / services I have / will be adding (though not limited to) into this cluster include:
+
+- NFS dynamic provisioner
+- Promtail / Loki / Grafana (PLG) stack
+- Prometheus
+  - Prometheus operator
+  - Thanos
+- Postgres
+- Kafka
+- Chaos Engineering
+
+This readme serves as 
+
+
 # Getting Started
 
 ## Set up n-node K8s cluster
@@ -32,6 +48,3 @@ helm upgrade --install grafana grafana/grafana -f helm\grafana_values.yaml -n mo
 k create configmap prometheus-config —-from-file prometheus.yml -n monitoring
 k create configmap prometheus-config --from-file prometheus.yml -o yaml --dry-run | k replace -f -
 ```
-#### TODO: 
-- Add Thanos
-- Switch to Prometheus Operator
