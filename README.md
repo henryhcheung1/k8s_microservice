@@ -1,6 +1,6 @@
 # Summary
 
-This repository holds my K8s development setup. Each piece of infrastructure serves as a deeper dive into the more advanced concepts of each service. When deployed together in a cluster (multi?), the interactions between the services can be observed and experimented upon. I will be dropping my notes in this README for now. Concepts / services I have / will be adding (though not limited to) into this cluster include:
+This repository holds my K8s development setup. The infrastructure I deploy allows me to delve into more advanced concepts alongside the interactions between them. I will be dropping my notes in here. The services / concepts I plan to deploy, though not limited to, include: 
 
 - NFS dynamic provisioner
 - Promtail / Loki / Grafana (PLG) stack
@@ -10,8 +10,6 @@ This repository holds my K8s development setup. Each piece of infrastructure ser
 - Postgres
 - Kafka
 - Chaos Engineering
-
-This readme serves as 
 
 
 # Getting Started
