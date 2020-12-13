@@ -1,6 +1,6 @@
 # Summary
 
-This repository holds my K8s development setup. The infrastructure I deploy allows me to delve into more advanced concepts alongside the interactions between them. I will be dropping my notes in here. The services / concepts I plan to deploy, though not limited to, include: 
+This repository holds my K8s development setup. 
 
 - NFS dynamic provisioner
 - Promtail / Loki / Grafana (PLG) stack
@@ -21,16 +21,14 @@ kind create cluster --config kind\config.yaml
 k cluster-info --context kind-kind
 ```
 
+## NFS
+```Bash
+vagrant up
+vagrant ssh nfs-server
+```
 
-## Setup nfs
-Start nfs docker container mounted to host directory
-```Bash
-docker run --network=kind -itd --privileged --restart unless-stopped -e SHARED_DIRECTORY=/data -v //d/data/nfs-storage:/data -p 2049:2049 itsthenetwork/nfs-server-alpine:12
-```
-From K8s worker nodes (client), mount NFS
-```Bash
-mount -t nfs 172.18.0.5:/ /mnt
-```
+
+
 
 ## Setup Promtail, Loki, Grafana monitoring stack via helm
 ```Bash
@@ -45,4 +43,18 @@ helm upgrade --install grafana grafana/grafana -f helm\grafana_values.yaml -n mo
 ```Bash
 k create configmap prometheus-config —-from-file prometheus.yml -n monitoring
 k create configmap prometheus-config --from-file prometheus.yml -o yaml --dry-run | k replace -f -
+```
+
+#### Additional Notes
+
+Deprecated:
+
+## Setup nfs
+Start nfs docker container mounted to host directory
+```Bash
+docker run --network=minikube -itd --privileged --restart unless-stopped -e SHARED_DIRECTORY=/data -v //d/data/nfs-storage:/data -p 2049:2049 itsthenetwork/nfs-server-alpine:12
+```
+From K8s worker nodes (client), mount NFS
+```Bash
+mount -t nfs 172.18.0.3:/ /mnt
 ```

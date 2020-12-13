@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres
-        image: postgres:10.4
+        image: postgres:9.5
         imagePullPolicy: "IfNotPresent"
         ports:
           - containerPort: 5432
@@ -34,10 +34,22 @@ spec:
               secretKeyRef:
                 name: postgres-secret
                 key: POSTGRES_PASSWORD
-        volumeMounts:
-          - mountPath: /var/lib/postgresql/data
-            name: postgredb
-      volumes:
-      - name: postgredb
-        persistentVolumeClaim:
-          claimName: postgres-pv-claim
+        # volumeMounts:
+        #   - mountPath: /var/lib/postgresql/data
+        #     name: postgredb
+      # initContainers:
+      # - name: busybox
+      #   image: busybox
+      #   command:
+      #     - /bin/sh
+      #     - -c
+      #     - |
+      #       chown -R 999:999 /var/lib/postgresql/data
+      #       chmod 700 /var/lib/postgresql/data
+      #   volumeMounts:
+      #     - mountPath: /var/lib/postgresql/data
+      #       name: postgredb
+      # volumes:
+      # - name: postgredb
+      #   persistentVolumeClaim:
+      #     claimName: postgres-pv-claim
