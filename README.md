@@ -3,13 +3,19 @@
 This repository holds my K8s development setup. 
 
 - NFS dynamic provisioner
-- Promtail / Loki / Grafana (PLG) stack
-- Prometheus
+- Monitoring
   - Prometheus operator
   - Thanos
-- Postgres
+  - Cortex
+- MySQL
 - Kafka
 - Chaos Engineering
+  - ChaosMesh
+- Cost Management
+  - KubeCost
+- Networking
+  - Cilium
+  - Istio
 
 
 # Getting Started
@@ -22,6 +28,7 @@ k cluster-info --context kind-kind
 ```
 
 ## NFS
+Using NFS server with vagrant. I was previously getting file system permissions errors when mounting a Windows host directory on an NFS docker container when persisting volumes for some of my K8s applications. Switched to Linux VM instead.
 ```Bash
 vagrant up
 vagrant ssh nfs-server
